@@ -19,6 +19,31 @@ Copy-Item .env.example .env
 Set `GEMINI_API_KEY` in `.env` before using the Gemini client. The local `.env`
 file and virtual environment are excluded from Git.
 
+## Database
+
+Start Docker Desktop. Set the `POSTGRES_*` variables and `DATABASE_URL` in
+`.env` using `.env.example` as a reference. Set `POSTGRES_PASSWORD` before the
+first database startup; the example password is a placeholder.
+
+The Docker database is available at `127.0.0.1:55432` by default. This avoids
+conflicting with a Windows PostgreSQL installation using port `5432`. Keep
+`POSTGRES_PORT` and the port in `DATABASE_URL` in sync. PostgreSQL still uses
+port `5432` inside the container.
+
+Install the database dependencies in your active virtual environment, then
+start the database and initialize its schema:
+
+```powershell
+python -m pip install "psycopg[binary]" pgvector
+docker compose up -d postgres
+python init_database.py
+```
+
+If you change the host port, run `docker compose up -d postgres` again to apply
+the mapping. The existing `postgres_data` volume is retained. Changes to
+`POSTGRES_USER`, `POSTGRES_DB`, or `POSTGRES_PASSWORD` in `.env` only configure
+a new, empty data volume; they do not update an existing database.
+
 ## Run
 
 The sample scripts use the bundled `data/apple.pdf` document:
