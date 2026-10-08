@@ -1,7 +1,15 @@
-from app.ingestion.parser import parse_pdf
+from app.parsing import (
+    docx_parser,
+    pdf_parser
+)
+
+from app.chunking import strategies
+
 from app.ingestion.cleaner import clean_pages
-from app.ingestion.chunker import chunk_pages
 from app.ingestion.embedder import embed_chunks
+import argparse
+from pathlib import Path
+
 
 from app.db.database import (
     init_db,
@@ -9,47 +17,46 @@ from app.db.database import (
 )
 
 
+DOCUMENT_TYPES = {
+    "docx" : docx_parser.DOCXParser(),
+    "pdf" : pdf_parser.PDFParser()
+}
+
+
+STRATEGIES = {
+    "fixed-size" : strategies.FixedSizeChunker,
+    "sentence" : strategies.SentenceChunker,
+    "paragraph": strategies.ParagraphChunker
+}
+
+
 def main():
 
-    init_db()
+    parser = argparse.ArgumentParser(description="Process PDF documents")
 
-    print("Parsing...")
-    raw_pages = parse_pdf(
-        "data/apple.pdf"
-    )
+    parser.add_argument("--file", type=str, required=True, help="Path to PDF/DOCX file")
 
-    print("Cleaning...")
-    cleaned_pages = clean_pages(
-        raw_pages
-    )
+    parser.add_argument("--strategy", type=int, required=True, choices=["fixed-size","sentence","paragraph"])
 
-    print("Chunking...")
-    chunks = chunk_pages(
-        cleaned_pages,
-        chunk_size=300,
-        overlap=50
-    )
+    parser.add_argument("--chunk-size", type=int, default=500)
 
-    print(
-        f"Created {len(chunks)} chunks"
-    )
+    parser.add_argument("--overlap", type=int, default=50)
 
-    # IMPORTANT:
-    # For the first test, don't call Gemini
-    # hundreds of times.
-    chunks = chunks[:5]
+    args = parser.parse_args()
 
-    print("Embedding...")
-    embedded_chunks = embed_chunks(
-        chunks
-    )
+    path = Path(args.file)
 
-    print("Saving to PostgreSQL...")
-    insert_chunks(
-        embedded_chunks
-    )
+    type_document = path.suffix.lower()
 
-    print("Done!")
+    if type_document not in DOCUMENT_TYPES.keys():
+        raise ValueError("not supported document")
+
+    parser = DOCUMENT_TYPES[type_document]
+
+
+
+
+
 
 
 if __name__ == "__main__":

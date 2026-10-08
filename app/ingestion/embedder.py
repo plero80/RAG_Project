@@ -7,7 +7,7 @@ load_dotenv()
 
 client = genai.Client()
 
-MODEL_NAME = "gemini-embedding-2"
+MODEL_NAME = "gemini-embedding-001"
 EMBEDDING_DIMENSION = 768
 
 
