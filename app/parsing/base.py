@@ -4,18 +4,14 @@ from pathlib import Path
 
 class DocumentParser(ABC):
 
-    document_id: str = ""
-
-    def DocumentParser(path: Path):
-        document_id = generate_document_id(path)
 
     @abstractmethod
-    def parse(self, path: str) -> str:
+    def parse(self, file_path: str) -> list[dict]:
         pass
 
     
 
-def generate_document_id(path: Path) -> str:
+def generate_document_id(path: str) -> str:
     sha256 = hashlib.sha256()
 
     with open(path, "rb") as file:

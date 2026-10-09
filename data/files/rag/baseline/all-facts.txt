@@ -1,0 +1,18 @@
+Quillmere Instruments: every fact in the RAG test corpus, as plain text.
+Index this file ON ITS OWN as a control. Do not index it with rag/corpus/.
+
+The K2 field meter carries a warranty of 24 months from the date of delivery. [product-sheet-two-column.pdf]
+Unused units may be returned within 30 days of delivery for a full refund. [product-sheet-two-column.pdf]
+Opened units are refunded less a 15 percent restocking fee. [product-sheet-two-column.pdf]
+Engineers on the weekend rota receive an on-call allowance of EUR 42 per weekend, paid with the following month's salary. [staff-handbook.pdf]
+Units with serial numbers below K2-20000 are rated to a maximum of 40 degrees C. [k2-specification.pdf]
+Ingress protection: IP54 [k2-specification.pdf]
+K2 field meter | Net 480 | Gross incl. 19% VAT 571.2 [price-list.xlsx]
+K5 bench meter | Lead time 6 weeks [price-list.xlsx]
+Support hours are 09:00 to 17:30, Monday to Friday, Central European Time. [support-faq.html]
+Repairs are usually completed within 10 working days of the unit arriving. [support-faq.html]
+It is a 3.7 V lithium-ion pack and ships within one week. [support-thread.eml]
+Default sample interval: 5 seconds (v2, status: current; v1 is superseded) [firmware-3.1-notes-v2.md]
+Calibration must be repeated every 12 months, or after any drop from a height above 1.5 metres. [service-manual.docx]
+Use calibration kit QM-CAL-KIT only. [service-manual.docx]
+after any drop from a height above 1.5 metres [service-manual.docx]

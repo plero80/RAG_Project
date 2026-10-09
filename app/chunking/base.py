@@ -36,8 +36,8 @@ class ChunkingStrategy(ABC):
                     "document_name": page["document_name"],
                     "page_number": page.get("page_number"),
                     "chunk_index": chunk_index,
-                    "strategy": self.strategy_name,
                     "text": text,
+                    "strategy": self.strategy_name,       
                 })
 
         return chunks

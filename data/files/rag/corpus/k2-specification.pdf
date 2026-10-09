@@ -1,0 +1,49 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 908 >>
+stream
+BT /F1 18 Tf 72 740 Td (K2 Field Meter) Tj ET
+BT /F1 12 Tf 72 718 Td (Technical specification) Tj ET
+BT /F1 11 Tf 72 680 Td (Measurement range: 0 to 2,000 ppm) Tj ET
+BT /F1 11 Tf 72 662 Td (Accuracy: plus or minus 2 percent of reading) Tj ET
+BT /F1 11 Tf 72 644 Td (Operating temperature: -10 to 50 degrees C \(1\)) Tj ET
+BT /F1 11 Tf 72 626 Td (Storage temperature: -20 to 60 degrees C) Tj ET
+BT /F1 11 Tf 72 608 Td (Power: USB-C, 5 V) Tj ET
+BT /F1 11 Tf 72 590 Td (Weight: 410 g) Tj ET
+BT /F1 11 Tf 72 572 Td (Ingress protection: IP54) Tj ET
+BT /F1 11 Tf 72 530 Td (The K2 is designed for handheld use in greenhouses, warehouses and plant rooms.) Tj ET
+BT /F1 11 Tf 72 515 Td (Readings are logged every sample interval and kept when the unit is switched off.) Tj ET
+0.5 w 72 78 m 250 78 l S
+BT /F1 8 Tf 72 64 Td (\(1\) Units with serial numbers below K2-20000 are rated to a maximum of 40 degrees C.) Tj ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+4 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+5 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+6 0 obj
+<< /Title (K2 technical specification) /Producer (qa-test-files) >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000001044 00000 n 
+0000001170 00000 n 
+0000001227 00000 n 
+0000001276 00000 n 
+trailer
+<< /Size 7 /Root 5 0 R /Info 6 0 R >>
+startxref
+1359
+%%EOF

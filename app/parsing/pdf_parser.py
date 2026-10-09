@@ -1,17 +1,17 @@
-from base import DocumentParser
+from .base import DocumentParser, generate_document_id
 import pymupdf as fitz
 from pathlib import Path
 
 class PDFParser(DocumentParser):
 
-    def parse(self, pdf_path: str) -> list[dict]:
+    def parse(self, file_path: str) -> list[dict]:
 
         pages = []
-        document_name = Path(pdf_path).name
+        document_name = Path(file_path).name
 
-        with fitz.open(pdf_path) as pdf:
+        with fitz.open(file_path) as pdf:
 
-            for page_number, page in enumerate(pdf, start=1):
+            for page_number, page in enumerate(pdf.pages(), start=1):
 
                 blocks = []
 
@@ -28,7 +28,7 @@ class PDFParser(DocumentParser):
                     })
 
                 pages.append({
-                    "document_id": self.document_id,
+                    "document_id": generate_document_id(file_path),
                     "document_name": document_name,
                     "page_number": page_number,
                     "text": page.get_text("text", sort=True),

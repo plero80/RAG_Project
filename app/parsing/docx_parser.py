@@ -2,7 +2,7 @@ from pathlib import Path
 from docx import Document
 from docx.text.paragraph import Paragraph
 from docx.table import Table
-from base import DocumentParser
+from .base import DocumentParser, generate_document_id
 
 
 
@@ -24,11 +24,13 @@ class DOCXParser(DocumentParser):
 
                 if not text:
                     continue
-
+                
+                style = element.style
+                
                 blocks.append({
                     "type": "paragraph",
                     "text": text,
-                    "style": element.style.name
+                    "style": style.name if style is not None else None,
                 })
 
             elif isinstance(element, Table):
@@ -46,7 +48,7 @@ class DOCXParser(DocumentParser):
                 })
 
         return [{
-            "document_id": self.document_id,
+            "document_id": generate_document_id(file_path),
             "document_name": document_name,
             "page_number": None,
             "text": "\n\n".join(block["text"] for block in blocks),
