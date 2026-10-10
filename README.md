@@ -144,33 +144,44 @@ Results include the filename, PDF page number (or `N/A` for DOCX), similarity,
 strategy, and chunk text. Higher similarity ranks first; this score is not a
 confidence percentage.
 
-### Recorded database results
+### Recorded search run and database results
 
-The following two results come from an existing successful retrieval trace;
-their text was read from PostgreSQL using the recorded chunk IDs. That search
-returned five results. The trace does not store the original query, so this
-excerpt is not presented as the response to the example query above.
+The command below completed successfully on 2026-10-10. It embedded the query
+with Gemini and retrieved the following two passages from PostgreSQL. Both
+passages were also checked against their stored chunk IDs in the database.
+
+After indexing the bundled `apple.pdf` with the sentence strategy as shown above,
+run this command from the project directory:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 search.py --query "What were Apple's total net sales?" --limit 2 --split-strategy sentence
+```
+
+Actual CLI output:
 
 ```text
 Result 1
 Document: apple.pdf
-Page: 34
-Similarity: 0.7078
+Page: 39
+Similarity: 0.7728
 Strategy: sentence
-Apple Inc.
+The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions): 2025 2024 2023 iPhone $ 209,586 $ 201,183 $ 200,583 Mac 33,708 29,984 29,357 iPad 28,023 26,694 28,300 Wearables, Home and Accessories 35,686 37,005 39,845 Services (1) 109,158 96,169 85,200 Total net sales $ 416,161 $ 391,035 $ 383,285 Portion of total net sales that was included in deferred revenue as of the beginning of the period $ 8,229 $ 7,728 $ 8,169 (1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products.
 
 Result 2
 Document: apple.pdf
-Page: 35
-Similarity: 0.7078
+Page: 26
+Similarity: 0.7547
 Strategy: sentence
-Apple Inc.
+Products and Services Performance The following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions): 2025 Change 2024 Change 2023 iPhone $ 209,586 4 % $ 201,183 — % $ 200,583 Mac 33,708 12 % 29,984 2 % 29,357 iPad 28,023 5 % 26,694 (6)% 28,300 Wearables, Home and Accessories 35,686 (4)% 37,005 (7)% 39,845 Services (1) 109,158 14 % 96,169 13 % 85,200 Total net sales $ 416,161 6 % $ 391,035 2 % $ 383,285 (1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products.
 ```
 
-These results also illustrate a current limitation: repeated PDF headings can
-become separate chunks and appear in search results. A fresh run of the example
-query during documentation verification encountered a Gemini API error, so no
-successful output for that specific query is claimed here.
+The matching retrieval event is in [logs/traces.jsonl](logs/traces.jsonl) under
+trace ID `02107e71-1fdf-453c-8ae3-c7f0ba0c7b25`. It records the source filenames,
+page numbers, chunk IDs, and similarity scores. The exact query is recorded
+above; queries are not currently included in the trace log.
+
+Results and scores can change with the indexed documents or embedding service.
+Repeated PDF headings can also become separate chunks and appear in results.
 
 ## Database schema
 
